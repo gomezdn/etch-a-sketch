@@ -1,20 +1,72 @@
 body {
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(247, 230, 188);
 }
 
+#controls {
+
+}
+#boardAndInstructions {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
 .untouched {
-    background-color: lightgrey;
+    background-color: rgb(236, 234, 234);
+    border: 1px solid grey;
     width: 18px;
     height: 18px;
-    border: 1px solid grey;
+    box-sizing: border-box;
 }
 
-#container {
+.container {
     display: grid;
-    grid-template-columns: repeat(16, 20px);
+    grid-template-columns: repeat(16, auto);
+    align-self: center;
+    width: 450px;
+    height: 450px;
+    overflow: hidden;
 }
 
 .touched {
-    background-color: darkgrey;
+    background-color: rgb(32, 32, 32);
+}
+
+.resetBtn {
+    width: auto;
+    background-color: rgb(226, 193, 109);
+    border: 1px solid rgb(134, 115, 66);
+    transition: all 0.085s;
+    border-radius: 2.5px;
+    font-family: monospace;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 0.45em 0.6em 0.45em 0.6em;
+}
+
+.resetClicked {
+    background-color: rgb(187, 171, 129)
+}
+
+.instructions {
+    font-family: monospace;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#instructionsDiv {
+    margin-top: 2em;
+}
+
+.newContainer {
+    align-content: center;
+    justify-content: center;
 }
