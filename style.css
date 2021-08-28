@@ -1,0 +1,20 @@
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.untouched {
+    background-color: lightgrey;
+    width: 18px;
+    height: 18px;
+    border: 1px solid grey;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(16, 20px);
+}
+
+.touched {
+    background-color: darkgrey;
+}
