@@ -35,7 +35,7 @@ body {
 }
 
 #colorPicker {
-    background-color: grey;
+    background-color: rgb(255, 255, 255);
     border-radius: 3px;
     width: 5em;
     height: 2.5em;
