@@ -6,36 +6,77 @@ function create_Elements(quantity, element) {  // creates X amount of elements i
     return elements
 }
 
+function appendChildren(parent, children) {
+    children.forEach(child => parent.appendChild(child))
+}
 
-const container = document.querySelector(".container");   // creates default board in memory
-create_Elements(256, "div").forEach(element => container.appendChild(element))  // attaches board to container
+const container = document.querySelector(".container");  // retrieves main container for divs
+
+appendChildren(container, create_Elements(256, "div"))  // attaches divs to container
+
 let divs = container.querySelectorAll("div")            // retrieves divs from default board
+
 divs.forEach(div => div.classList.add("untouched"))    // assigns class untouched to divs
 
+const sizeSelect = document.querySelector("#selectSize");
 
-let drawing;                                      // all this block defines the logic for drawing
-window.addEventListener("keydown", (e) => {       
-    if (e.key == "c") { drawing = true }          
+
+for (let i = 2; i <= 50; i++) {                        // creates the options to select the size of the container
+    let option = document.createElement("option")      
+    option.value = i;
+    option.label = `${i}`;
+    if (i == 16) {option.selected = true}
+    sizeSelect.appendChild(option)
+}                                                      
+
+
+
+function makeBoardDrawable(board, boardDivs) {
+    let drawing;                                     
+    window.addEventListener("keydown", (e) => {       
+        if (e.key == "c") { drawing = true }          
+    })
+    window.addEventListener("keyup", (e) => {
+        if (e.key == "c") { drawing = false }
+    })
+    board.addEventListener("mouseleave", () => drawing = false)
+    boardDivs.forEach(div => div.addEventListener("mouseover", () => {
+        if (drawing) {
+            div.classList.add("touched")
+        }
+    }))     
+}
+
+makeBoardDrawable(container, divs)
+
+
+const clearBtn = document.querySelector(".clearBtn");
+
+clearBtn.addEventListener("click", () => {      // retrieves the button from html to clear the board 
+    clearBtn.classList.add("clearClicked")
 })
-window.addEventListener("keyup", (e) => {
-    if (e.key == "c") { drawing = false }
-})
-container.addEventListener("mouseleave", () => drawing = false)
-divs.forEach(div => div.addEventListener("mouseover", () => {
-    if (drawing) {
-        div.classList.add("touched")
-    }
-}))
+clearBtn.addEventListener("transitionend", () => clearBtn.classList.remove("clearClicked")) // just clearButton styling
 
-
-
-const resetBtn = document.querySelector(".resetBtn");
-
-resetBtn.addEventListener("click", () => {
-    resetBtn.classList.add("resetClicked")
-})
-resetBtn.addEventListener("transitionend", () => resetBtn.classList.remove("resetClicked"))
-
-resetBtn.addEventListener("click", () => {
+clearBtn.addEventListener("click", () => {        // clears the board when clear button pressed
     divs.forEach(div => div.classList.remove("touched"))
 })
+
+
+function removeAllChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+}
+
+
+sizeSelect.addEventListener("change", () => {            // this block deletes all the divs from the board
+    removeAllChildren(container);                        // and creates a new amount equally distributed,
+    let sideSize = Number(sizeSelect.value)                   // making them also drawable
+    let newDivs = create_Elements(sideSize*sideSize, "div")
+    newDivs.forEach(div => div.classList.add("untouched"))
+    container.style.gridTemplateColumns = `repeat(${sideSize}, 1fr)`
+    container.style.gridTemplateRows = `repeat(${sideSize}, 1fr)`
+    makeBoardDrawable(container, newDivs)
+    appendChildren(container, newDivs)
+})
+
