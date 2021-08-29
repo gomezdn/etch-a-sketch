@@ -28,7 +28,8 @@ for (let i = 2; i <= 50; i++) {                       // creates the options to 
 }                                                      
 
 let drawingColor = "rgb(36, 36, 36)";                
-const colorPicker = document.querySelector("#colorPicker");       
+const colorPicker = document.querySelector("#colorPicker");
+colorPicker.value = "rgb(36, 36, 36)";   
 colorPicker.addEventListener("change", () => drawingColor = colorPicker.value)
 
 
