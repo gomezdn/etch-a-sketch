@@ -7,6 +7,7 @@ body {
     justify-content: center;
     background-color: rgb(247, 230, 188);
     column-gap: 8em;
+    row-gap: 0;
 }
 
 #controls {
@@ -14,14 +15,36 @@ body {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    row-gap: 2em;
 
 }
 
-#sizeCtrl {
+#colorSelect {
+    display: flex;
+    flex-direction: row;
     font-family: monospace;
     font-weight: bold;
     font-size: 1.2em;
-    padding-top: 2em;
+    column-gap: 6em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#colorPicker {
+    background-color: grey;
+    border-radius: 3px;
+    width: 5em;
+    height: 2.5em;
+    border: none;
+}
+#sizeCtrl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 #boardAndInstructions {
@@ -30,15 +53,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-
 }
 
 .untouched {
     background-color: rgb(236, 234, 234);
     border: 1px solid grey;
-    width: auto;
-    height: auto;
     box-sizing: border-box;
+}
+
+.erased {
+    background-color: rgb(236, 234, 234);
 }
 
 .container {
@@ -46,17 +70,14 @@ body {
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
     align-self: center;
-    width: 450px;
-    height: 450px;
-    border: 0.35em solid black;
+    width: 500px;
+    height: 500px;
+    border: 0.4em solid black;
     align-content: center;
     justify-content: center;
     border-radius: 10px;
     gap: 0;
-}
-
-.touched {
-    background-color: rgb(32, 32, 32);
+    user-select: none;
 }
 
 .clearBtn {
@@ -84,6 +105,3 @@ body {
     margin: 0.5em 0 0.5em 0;
 }
 
-#instructionsDiv {
-    margin-top: 2em;
-}

@@ -12,17 +12,20 @@
 <body>
     <div id="controls">
         <button type="button" class="clearBtn">Clear</button>
-
+        <div id="colorSelect">
+            <label for="colorSelect">Select drawing color</label>
+            <input type="color" id="colorPicker">
+        </div>
         <div id="sizeCtrl">
-            <label for="selectSize">Select the amount of squares per side</label>
+            <label for="selectSize">Select board size</label>
             <select id="selectSize"></select>
         </div>
     </div>
 
     <div id="boardAndInstructions">
         <div id="instructionsDiv">
-            <p class="instructions">Hold C to draw</p>
-            <p class="instructions">Hold X to delete</p>
+            <p class="instructions">Left click to draw</p>
+            <p class="instructions">Right click to erase</p>
         </div>
         <div class="container"></div>
     </div>
